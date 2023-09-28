@@ -23,7 +23,6 @@
   color: #000;
   font-size: 22px;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: -0.88px;
   border-bottom: 1px solid #000;
 }
@@ -46,7 +45,6 @@
   color: #000;
   font-size: 20px;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: -0.8px;
 }
 
@@ -55,7 +53,7 @@
   color: #000;
   font-size: 14px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1.43;
 }
 
 .about__steps {
@@ -83,7 +81,6 @@
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  line-height: normal;
 }
 
 .about__step-text_colored {
@@ -97,10 +94,9 @@
   text-align: center;
   font-size: 14px;
   font-weight: 500;
-  line-height: 17px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .about__container {
     min-height: 585px;
     padding: 90px 50px;
@@ -120,7 +116,7 @@
 
   .about__item-text {
     font-size: 12px;
-    line-height: 18px;
+    line-height: 1.5;
   }
 
   .about__step_colored {
@@ -132,25 +128,24 @@
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .about__container {
     padding: 70px 18px 69px;
-    min-height: 614px;
+    min-height: 641px;
   }
 
   .about__title {
     padding-bottom: 28px;
-    margin-bottom: 62px;
+    margin-bottom: 60px;
     font-size: 18px;
-    font-weight: 400;
     letter-spacing: -0.72px;
   }
 
   .about__items {
     display: flex;
     flex-direction: column;
-    row-gap: 58px;
-    margin-bottom: 61px;
+    row-gap: 56px;
+    margin-bottom: 60px;
   }
 
   .about__item {
@@ -161,11 +156,12 @@
     padding-bottom: 16px;
     font-size: 18px;
     letter-spacing: -0.72px;
+    line-height: 1.25;
   }
 
   .about__item-text {
     font-size: 11px;
-    line-height: 16px;
+    line-height: 1.45;
   }
 
   .about__step_colored {
@@ -181,7 +177,5 @@
   .about__step-title {
     padding-top: 10px;
     font-size: 11px;
-    font-weight: 500;
-    line-height: normal;
   }
 }

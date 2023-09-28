@@ -16,7 +16,7 @@ export const Promo = () => {
             Узнать больше
           </a>
         </div>
-        <div className='promo__landing-logo'></div>
+        <div className='promo__img'></div>
       </div>
     </section>
   )

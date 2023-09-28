@@ -1,7 +1,6 @@
 import React from "react";
 import './Student.css';
-
-const studentAvatar = require('../../images/avatar.jpg');
+import studentAvatar from '../../images/avatar.jpg';
 
 export const Student = () => {
   return (
@@ -32,7 +31,6 @@ export const Student = () => {
           />
         </section>
       </div>
-
     </section>
   )
 }
