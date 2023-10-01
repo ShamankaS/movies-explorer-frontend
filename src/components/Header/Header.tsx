@@ -1,48 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import './Header.css';
+import '../Navigation/Navigation.css';
+import { Navigation } from '../Navigation/Navigation';
 
 export const Header = () => {
-  // const isLanding = useLocation().pathname === '/';
-  const isLanding = true;
+  const isLanding = useLocation().pathname === '/';
+  const [isOpened, setOpened] = useState(false);
+
+  const togglePopup = () => {
+    setOpened((state) => !state);
+  }
 
   return (
-    <header className={`header ${isLanding ? 'header__landing' : ''}`}>
+    <header className={`header ${isLanding ? 'header_landing' : ''}`}>
       <div className='header__container'>
-        <Link
-          className='header__logo'
-          to='/'
-          title='На главную'
-        />
+        <Link className='header__logo' to='/' title='На главную' />
         {isLanding
           ? (
-            <nav className='header__auth'>
-              <ul className='header__auth-items'>
+            <nav className='header__nav'>
+              <ul className='header__items'>
                 <li>
-                  <NavLink
-                    to='/signup'
-                    className='header__auth-item'
-                    title='Регистрация'
-                  >
-                    Регистрация
-                  </NavLink>
+                  <NavLink className='header__item' to='/signup' title='Регистрация'>Регистрация</NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to='/signin'
-                    className='header__auth-item header__auth-item_btn'
-                    title='Войти'
-                  >
-                    Войти
-                  </NavLink>
+                <li className='header__item-button'>
+                  <NavLink className='header__item header__item-button-text' to='/signin' title='Войти'>Войти</NavLink>
                 </li>
               </ul>
             </nav>
           )
-          :
-          <button className='header__burger'></button>
+          : <Navigation visible={isOpened} />
         }
+        {!isLanding
+          && (
+            <label className="burger">
+              <input type="checkbox" id="burger-checkbox" onClick={togglePopup} />
+              <label className="burger__icon" htmlFor="burger-checkbox">
+                <span className="icon__line line1"></span>
+                <span className="icon__line line2"></span>
+                <span className="icon__line line3"></span>
+              </label>
+            </label>
+          )}
       </div>
     </header>
   )

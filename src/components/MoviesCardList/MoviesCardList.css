@@ -28,6 +28,7 @@
 }
 
 .list__button {
+  cursor: pointer;
   margin: 50px 70px 80px;
   padding: 0;
   max-width: 1280px;
@@ -44,6 +45,14 @@
 
 .list__button:hover {
   opacity: 0.8;
+}
+
+.list__button:active {
+  transform: scale(0.95);
+}
+
+.list__empty {
+  height: 140px;
 }
 
 @media screen and (max-width: 900px) {

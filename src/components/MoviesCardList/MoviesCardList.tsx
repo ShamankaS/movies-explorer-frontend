@@ -1,10 +1,12 @@
 import React from "react";
+import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import { MoviesCard } from "../MoviesCard/MoviesCard";
 
 export const MoviesCardList = () => {
+  const isMoviesPage = useLocation().pathname === '/movies';
   return (
-    <main className="list">
+    <section className="list">
       <div className="list__container">
         <ul className="list__block">
           <MoviesCard />
@@ -12,9 +14,12 @@ export const MoviesCardList = () => {
           <MoviesCard />
           <MoviesCard />
           <MoviesCard />
+          <MoviesCard />
         </ul>
-        <button className="list__button">Ещё</button>
+        {isMoviesPage
+          ? <button className="list__button">Ещё</button>
+          : <div className="list__empty"></div>}
       </div>
-    </main >
+    </section>
   )
 }

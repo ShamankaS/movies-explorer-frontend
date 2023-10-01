@@ -6,7 +6,6 @@ export const Student = () => {
   return (
     <section className="student">
       <div className="student__container">
-
         <h2 className="student__title">Студент</h2>
         <section className="student__about">
           <div className="student__text-block">
@@ -24,11 +23,7 @@ export const Student = () => {
               Github
             </a>
           </div>
-          <img
-            className="student__avatar"
-            src={studentAvatar}
-            alt="Аватар студента"
-          />
+          <img className="student__avatar" src={studentAvatar} alt="Аватар студента" />
         </section>
       </div>
     </section>
