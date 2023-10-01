@@ -11,6 +11,11 @@ export const Header = () => {
 
   const togglePopup = () => {
     setOpened((state) => !state);
+    if (isOpened) {
+      document.body.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   return (
