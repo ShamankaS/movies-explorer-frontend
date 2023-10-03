@@ -16,39 +16,38 @@ export const Header = () => {
     } else {
       document.body.style.overflow = 'hidden';
     }
-  }
+  };
 
   return (
     <header className={`header ${isLanding ? 'header_landing' : ''}`}>
-      <div className='header__container'>
-        <Link className='header__logo' to='/' title='На главную' />
+      <div className="header__container">
+        <Link className="header__logo" to="/" title="На главную" />
         {isLanding
           ? (
-            <nav className='header__nav'>
-              <ul className='header__items'>
+            <nav className="header__nav">
+              <ul className="header__items">
                 <li>
-                  <NavLink className='header__item' to='/signup' title='Регистрация'>Регистрация</NavLink>
+                  <NavLink className="header__item" to="/signup" title="Регистрация">Регистрация</NavLink>
                 </li>
-                <li className='header__item-button'>
-                  <NavLink className='header__item header__item-button-text' to='/signin' title='Войти'>Войти</NavLink>
+                <li className="header__item-button">
+                  <NavLink className="header__item header__item-button-text" to="/signin" title="Войти">Войти</NavLink>
                 </li>
               </ul>
             </nav>
           )
-          : <Navigation visible={isOpened} />
-        }
+          : <Navigation visible={isOpened} />}
         {!isLanding
           && (
-            <label className="burger">
-              <input type="checkbox" id="burger-checkbox" onClick={togglePopup} />
+            <div className="burger">
               <label className="burger__icon" htmlFor="burger-checkbox">
-                <span className="icon__line line1"></span>
-                <span className="icon__line line2"></span>
-                <span className="icon__line line3"></span>
+                <input type="checkbox" id="burger-checkbox" onClick={togglePopup} />
+                <span className="icon-line line1" />
+                <span className="icon-line line2" />
+                <span className="icon-line line3" />
               </label>
-            </label>
+            </div>
           )}
       </div>
     </header>
-  )
-}
+  );
+};

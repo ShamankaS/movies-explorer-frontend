@@ -26,13 +26,20 @@
   column-gap: 16px;
 }
 
-.navigation__item_to-main {
-  display: none;
-}
 
 .navigation__items_auth {
+  color: #000;
+  text-decoration: none;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
   height: 30px;
   column-gap: 17px;
+}
+
+.navigation__item_to-main {
+  display: none;
 }
 
 .navigation__item {
@@ -50,12 +57,6 @@
 
 .navigation__item_active {
   font-weight: 500;
-}
-
-.navigation__item-auth {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.14;
 }
 
 .navigation__button {
@@ -117,7 +118,7 @@
 
   .navigation__items {
     flex-direction: column;
-    row-gap: 22px;
+    row-gap: 20px;
     width: 340px;
     padding-left: 0px;
   }

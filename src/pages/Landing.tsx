@@ -7,21 +7,18 @@ import { Student } from '../components/Students/Student';
 import { Portfolio } from '../components/Portfolio/Portfolio';
 import { Footer } from '../components/Footer/Footer';
 
-
-const Landing = () => {
-  return (
-    <>
-      <Header />
-      <main>
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <Student />
-        <Portfolio />
-      </main>
-      <Footer />
-    </>
-  )
-}
+const Landing = () => (
+  <>
+    <Header />
+    <main>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <Student />
+      <Portfolio />
+    </main>
+    <Footer />
+  </>
+);
 
 export default Landing;
