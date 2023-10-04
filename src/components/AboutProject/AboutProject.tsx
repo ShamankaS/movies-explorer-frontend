@@ -5,7 +5,7 @@ export const AboutProject = () => (
   <section className="about" id="about-project">
     <div className="about__container">
       <h2 className="about__title">О проекте</h2>
-      <section className="about__items">
+      <div className="about__items">
         <article className="about__item">
           <h3 className="about__item-title">Дипломный проект включал 5 этапов</h3>
           <p className="about__item-text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
@@ -14,7 +14,7 @@ export const AboutProject = () => (
           <h3 className="about__item-title">На выполнение диплома ушло 5 недель</h3>
           <p className="about__item-text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
         </article>
-      </section>
+      </div>
       <div className="about__steps">
         <div className="about__step about__step_colored">
           <p className="about__step-text about__step-text_colored">1 неделя</p>

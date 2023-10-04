@@ -6,7 +6,7 @@ import { MoviesCard } from '../MoviesCard/MoviesCard';
 export const MoviesCardList = () => {
   const isMoviesPage = useLocation().pathname === '/movies';
   return (
-    <section className="list">
+    <div className="list">
       <div className="list__container">
         <div className="list__block">
           <MoviesCard />
@@ -20,6 +20,6 @@ export const MoviesCardList = () => {
           ? <button className="list__button" type="button">Ещё</button>
           : <div className="list__empty" />}
       </div>
-    </section>
+    </div>
   );
 };

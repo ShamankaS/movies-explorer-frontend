@@ -33,9 +33,6 @@
 }
 
 .portfolio__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 0;
   margin-bottom: 15px;
   padding-bottom: 14px;
@@ -47,6 +44,17 @@
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.portfolio__item-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.portfolio__item-link:hover {
+  opacity: 0.7;
 }
 
 .portfolio__item-title {
@@ -67,10 +75,6 @@
   font-weight: 400;
   line-height: 60px;
   letter-spacing: -1.2px;
-}
-
-.portfolio__item-icon:hover {
-  opacity: 0.7;
 }
 
 .portfolio__item-icon:active {

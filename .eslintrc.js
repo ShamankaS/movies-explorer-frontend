@@ -22,7 +22,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-indent': [2, 2],
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] },
+    'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] },
     ],
     'react/jsx-indent-props': [2, 2],
     indent: [2, 2],
@@ -33,6 +33,5 @@ module.exports = {
     'max-len': ['error', { code: 200, ignoreUrls: true }],
     'jsx-a11y/label-has-associated-control': 'warn',
     'jsx-a11y/control-has-associated-label': 'warn',
-    'linebreak-style': ['error', 'windows'],
   },
 };

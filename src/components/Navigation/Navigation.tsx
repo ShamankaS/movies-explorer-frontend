@@ -11,33 +11,16 @@ export const Navigation: React.FC<Props> = ({ visible }) => (
     <nav className={`navigation__wrapper ${visible ? 'navigation__wrapper_visible' : ''}`}>
       <ul className="navigation__items">
         <li className="navigation__item navigation__item_to-main">
-          <NavLink className="navigation__item navigation__item_to-main" to="/" title="На главную">Главная</NavLink>
+          <NavLink className="navigation__item-link" to="/" title="На главную">Главная</NavLink>
         </li>
-        <li className="navigation__item navigation__item_to-main">
-          <NavLink
-            className="navigation__item navigation__item_active"
-            to="/movies"
-            title="Все фильмы"
-          >
-            Фильмы
-          </NavLink>
+        <li className="navigation__item navigation__item_active">
+          <NavLink className="navigation__item-link" to="/movies" title="Все фильмы">Фильмы</NavLink>
         </li>
-        <li className="navigation__item navigation__item_to-main">
-          <NavLink
-            className="navigation__item"
-            to="/saved-movies"
-            title="Сохранённые фильмы"
-          >
-            Сохранённые фильмы
-          </NavLink>
+        <li className="navigation__item">
+          <NavLink className="navigation__item-link" to="/saved-movies" title="Сохранённые фильмы">Сохранённые фильмы</NavLink>
         </li>
       </ul>
-      <NavLink
-        to="/profile"
-        // className="navigation__items navigation__item navigation__item-auth navigation__items_auth"
-        className="navigation__items navigation__items_auth"
-        title="Аккаунт"
-      >
+      <NavLink to="/profile" className="navigation__items navigation__items_auth" title="Аккаунт">
         Аккаунт
         <div className="navigation__button">
           <span className="navigation__button-icon">
