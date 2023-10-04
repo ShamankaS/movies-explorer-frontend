@@ -1,0 +1,93 @@
+.element {
+  background: #FDFDFD;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+}
+
+.element__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.element__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.element__title {
+  margin: 0;
+  padding-bottom: 9px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.element__time {
+  margin: 0;
+  color: #A0A0A0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.18;
+}
+
+.element__button {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  background: #F9F9F9;
+  border: none;
+}
+
+.element__button:hover {
+  opacity: 0.8;
+}
+
+.element__button:active {
+  transform: scale(0.9);
+}
+
+.element__button_active {
+  background: #2BE080;
+}
+
+.element__delete-button {
+  width: 8px;
+  height: 8px;
+}
+
+.element__button-icon {
+  width: 10px;
+  height: 13px;
+  z-index: 1;
+}
+
+.element__button-icon_active path {
+  fill: #FFF;
+  stroke-width: 0px;
+}
+
+.element__image {
+  width: 364px;
+  height: 203px;
+}
+
+@media screen and (max-width: 900px) {
+  .element__image {
+    width: 339px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .element__image {
+    width: 300px;
+    height: 168px;
+  }
+}

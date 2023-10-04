@@ -1,0 +1,133 @@
+.portfolio {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: #FFF;
+}
+
+.portfolio__container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 70px 120px;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 425px;
+}
+
+.portfolio__title {
+  margin: 0;
+  padding-bottom: 45px;
+  color: #A0A0A0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.portfolio__items {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+.portfolio__item {
+  margin: 0;
+  margin-bottom: 15px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(232, 232, 232, 1);
+  max-height: 60px;
+}
+
+.portfolio__item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.portfolio__item-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+.portfolio__item-link:hover {
+  opacity: 0.7;
+}
+
+.portfolio__item-title {
+  margin: 0;
+  color: #000;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+}
+
+.portfolio__item-icon {
+  box-sizing: border-box;
+  padding-top: 7px;
+  color: #000;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -1.2px;
+}
+
+.portfolio__item-icon:active {
+  transform: scale(0.9);
+}
+
+@media screen and (max-width: 900px) {
+  .portfolio__container {
+    padding: 0 50px 80px;
+    min-height: 390px;
+  }
+
+  .portfolio__item-title {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+
+  .portfolio__item-icon {
+    width: 27px;
+    height: 60px;
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio__container {
+    padding: 0 14px 70px;
+    min-height: 294px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    padding-bottom: 42px;
+  }
+
+  .portfolio__item-title {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+  }
+
+  .portfolio__item {
+    padding-bottom: 18px;
+    margin-bottom: 21px;
+  }
+
+  .portfolio__item-icon {
+    padding-top: 0px;
+    width: 18px;
+    height: 28px;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+  }
+}

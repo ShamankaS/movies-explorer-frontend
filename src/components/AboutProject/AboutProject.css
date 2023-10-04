@@ -1,0 +1,181 @@
+.about {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: #FFF;
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 110px 70px;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 608px;
+}
+
+.about__title {
+  margin: 0;
+  padding-bottom: 23px;
+  width: 100%;
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid #000;
+}
+
+.about__items {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  column-gap: 40px;
+}
+
+.about__item {
+  flex: 1 1;
+  padding: 70px 0 110px;
+}
+
+.about__item-title {
+  margin: 0;
+  padding-bottom: 26px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+}
+
+.about__item-text {
+  margin: 0;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.about__steps {
+  display: flex;
+  width: 100%;
+}
+
+.about__step {
+  flex-grow: 1;
+}
+
+.about__step_colored {
+  flex-grow: 0;
+  width: 228px;
+}
+
+.about__step-text {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 9px 0;
+  height: 36px;
+  background: #F2F2F2;
+  text-align: center;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.about__step-text_colored {
+  background: #2BE080;
+}
+
+.about__step-title {
+  margin: 0;
+  padding-top: 14px;
+  color: #A0A0A0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 900px) {
+  .about__container {
+    min-height: 585px;
+    padding: 90px 50px;
+  }
+
+  .about__items {
+    column-gap: 30px;
+  }
+
+  .about__item {
+    padding-bottom: 93px;
+  }
+
+  .about__item-title {
+    padding-bottom: 22px;
+  }
+
+  .about__item-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about__step_colored {
+    width: 140px;
+  }
+
+  .about__step-title {
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about__container {
+    padding: 70px 18px 69px;
+    min-height: 641px;
+  }
+
+  .about__title {
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about__items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 56px;
+    margin-bottom: 60px;
+  }
+
+  .about__item {
+    padding: 0;
+  }
+
+  .about__item-title {
+    padding-bottom: 16px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    line-height: 1.25;
+  }
+
+  .about__item-text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about__step_colored {
+    width: 100px;
+  }
+
+  .about__step-text {
+    padding: 11px 0;
+    height: 35px;
+    font-size: 11px;
+  }
+
+  .about__step-title {
+    padding-top: 10px;
+    font-size: 11px;
+  }
+}

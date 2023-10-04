@@ -1,0 +1,121 @@
+.promo {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #465DFF;
+}
+
+.promo__container {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 75px 70px;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 574px;
+}
+
+.promo__text-block {
+  flex-shrink: 1;
+}
+
+.promo__img {
+  width: 310px;
+  height: 304px;
+  background: url('../../images/landing-logo.svg');
+  background-size: cover;
+  flex-shrink: 0;
+}
+
+.promo__title {
+  max-width: 640px;
+  margin: 0;
+  padding-bottom: 36px;
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.16;
+}
+
+.promo__text {
+  max-width: 310px;
+  margin: 0;
+  padding-bottom: 155px;
+  color: #FFF;
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.promo__link {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 20px;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.promo__link:active {
+  transform: scale(0.9);
+}
+
+.promo__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 900px) {
+  .promo__container {
+    align-items: center;
+    flex-direction: column-reverse;
+    padding: 140px 44px 74px;
+    min-height: 850px;
+  }
+
+  .promo__text-block {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  .promo__title {
+    max-width: 680px;
+    padding: 48px 0 22px;
+    font-size: 40px;
+    line-height: 1.25;
+  }
+
+  .promo__text {
+    padding-bottom: 92px;
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .promo__container {
+    padding: 70px 10px 30px;
+    min-height: 636px;
+  }
+
+  .promo__img {
+    width: 210.001px;
+    height: 206px;
+  }
+
+  .promo__title {
+    max-width: 300px;
+    padding: 44px 0 24px;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .promo__text {
+    padding-bottom: 80px;
+  }
+}
