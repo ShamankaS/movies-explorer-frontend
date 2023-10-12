@@ -2,7 +2,7 @@ import React from 'react';
 import './NotFound.css';
 import { Link } from 'react-router-dom';
 
-const NotFound = () => (
+export const NotFound = () => (
   <div className="error-container">
     <div className="error-container__text">
       <h1 className="error-container__title">404</h1>
@@ -11,5 +11,3 @@ const NotFound = () => (
     <Link to="/" className="error-container__link">Назад</Link>
   </div>
 );
-
-export default NotFound;

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import './Header.css';
 import '../Navigation/Navigation.css';
 import { Navigation } from '../Navigation/Navigation';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-export const Header = () => {
+export const Header = memo(() => {
   const isLanding = useLocation().pathname === '/';
+  const currentUser = useContext(CurrentUserContext);
   const [isOpened, setOpened] = useState(false);
 
   const togglePopup = () => {
@@ -18,11 +20,16 @@ export const Header = () => {
     }
   };
 
+  const closeMenu = () => {
+    setOpened(false);
+    document.body.style.overflow = 'auto';
+  };
+
   return (
     <header className={`header ${isLanding ? 'header_landing' : ''}`}>
       <div className="header__container">
         <Link className="header__logo" to="/" title="На главную" />
-        {isLanding
+        {!currentUser
           ? (
             <nav className="header__nav">
               <ul className="header__items">
@@ -35,8 +42,8 @@ export const Header = () => {
               </ul>
             </nav>
           )
-          : <Navigation visible={isOpened} />}
-        {!isLanding
+          : <Navigation visible={isOpened} onClose={closeMenu} />}
+        {currentUser
           && (
             <div className="burger">
               <label className="burger__icon" htmlFor="burger-checkbox">
@@ -50,4 +57,4 @@ export const Header = () => {
       </div>
     </header>
   );
-};
+});

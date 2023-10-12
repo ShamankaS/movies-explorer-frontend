@@ -7,7 +7,7 @@ import { Student } from '../components/Students/Student';
 import { Portfolio } from '../components/Portfolio/Portfolio';
 import { Footer } from '../components/Footer/Footer';
 
-const Landing = () => (
+export const Landing = () => (
   <>
     <Header />
     <main>
@@ -20,5 +20,3 @@ const Landing = () => (
     <Footer />
   </>
 );
-
-export default Landing;
