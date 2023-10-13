@@ -113,6 +113,7 @@
 }
 
 .form__submit-button:disabled {
+  cursor: not-allowed;
   color: #C2C2C2;
   background: #F8F8F8;
 }

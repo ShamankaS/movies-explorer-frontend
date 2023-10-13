@@ -33,6 +33,10 @@
   column-gap: 17px;
 }
 
+.navigation__items_auth:hover {
+  opacity: 0.8;
+}
+
 .navigation__items_light {
   color: #FFF;
 }
