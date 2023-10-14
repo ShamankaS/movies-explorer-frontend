@@ -1,6 +1,5 @@
 import React, { memo, useContext, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-
 import './Header.css';
 import '../Navigation/Navigation.css';
 import { Navigation } from '../Navigation/Navigation';
@@ -9,7 +8,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 export const Header = memo(() => {
   const isLanding = useLocation().pathname === '/';
   const currentUser = useContext(CurrentUserContext);
-  const [isOpened, setOpened] = useState(false);
+  const [isOpened, setOpened] = useState<boolean>(false);
 
   const togglePopup = () => {
     setOpened((state) => !state);

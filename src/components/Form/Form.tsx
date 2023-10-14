@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import './Form.css';
 import { useFormValidation } from '../../hooks/useFormValidation';
@@ -11,7 +11,7 @@ interface Props {
   errorMessage: string;
 }
 
-export const Form: React.FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
+export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
   const {
     values, errors, handleChange, isValid, isValidInputs,
   } = useFormValidation({
@@ -20,7 +20,7 @@ export const Form: React.FC<Props> = ({ isRegister, onSubmit, errorMessage }) =>
     password: '',
   });
 
-  const handleSubmit = (evt: React.FormEvent) => {
+  const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
     const userData = isRegister ? {
       name: values.name,

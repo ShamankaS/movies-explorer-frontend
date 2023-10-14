@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  FC, FormEvent, useContext, useEffect, useState,
+} from 'react';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { userData } from '../../../types/userTypes';
@@ -11,9 +13,9 @@ interface Props {
   errorMessage: string;
 }
 
-export const Profile: React.FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
-  const [isChanged, setIsChanged] = useState(false);
-  const [isEditModeOn, setIsEditModeOn] = useState(false);
+export const Profile: FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
+  const [isChanged, setIsChanged] = useState<boolean>(false);
+  const [isEditModeOn, setIsEditModeOn] = useState<boolean>(false);
   const userData = useContext(CurrentUserContext);
 
   const {
@@ -28,7 +30,7 @@ export const Profile: React.FC<Props> = ({ onLogout, onSubmit, errorMessage }) =
     email: userData?.email,
   }) !== JSON.stringify(values);
 
-  const handleSubmit = (evt: React.FormEvent, values: Partial<userData>) => {
+  const handleSubmit = (evt: FormEvent, values: Partial<userData>) => {
     evt.preventDefault();
     onSubmit(values).then(() => {
       setIsChanged(false);
