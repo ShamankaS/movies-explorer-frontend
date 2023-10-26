@@ -17,6 +17,6 @@ export function useFormValidation(initValues: initialObject) {
   };
 
   return {
-    values, handleChange, errors, isValid, isValidInputs,
+    values, handleChange, errors, isValid, isValidInputs, setValues,
   };
 }

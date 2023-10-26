@@ -31,6 +31,7 @@
   line-height: 1.14;
   height: 30px;
   column-gap: 17px;
+  padding-left: 0px;
 }
 
 .navigation__items_auth:hover {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, MouseEvent } from 'react';
 import './Navigation.css';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -7,10 +7,10 @@ interface Props {
   onClose: () => void;
 }
 
-export const Navigation: React.FC<Props> = ({ visible, onClose }) => {
+export const Navigation: FC<Props> = ({ visible, onClose }) => {
   const isLanding = useLocation().pathname === '/';
 
-  const handleOverlayClick = (evt: React.MouseEvent) => {
+  const handleOverlayClick = (evt: MouseEvent) => {
     if ((evt.target as HTMLElement).classList.contains('navigation_visible')) {
       onClose();
     }
@@ -23,6 +23,7 @@ export const Navigation: React.FC<Props> = ({ visible, onClose }) => {
           <li className="navigation__item navigation__item_to-main">
             <NavLink
               className={({ isActive }) => `navigation__item-link ${isLanding ? 'navigation__item-link_landing' : ''} ${isActive ? 'navigation__item-link_active' : ''}`}
+              onClick={onClose}
               to="/"
               title="На главную"
             >
@@ -32,6 +33,7 @@ export const Navigation: React.FC<Props> = ({ visible, onClose }) => {
           <li className="navigation__item navigation__item_active">
             <NavLink
               className={({ isActive }) => `navigation__item-link ${isLanding ? 'navigation__item-link_landing' : ''} ${isActive ? 'navigation__item-link_active' : ''}`}
+              onClick={onClose}
               to="/movies"
               title="Все фильмы"
             >
@@ -41,6 +43,7 @@ export const Navigation: React.FC<Props> = ({ visible, onClose }) => {
           <li className="navigation__item">
             <NavLink
               className={({ isActive }) => `navigation__item-link ${isLanding ? 'navigation__item-link_landing' : ''} ${isActive ? 'navigation__item-link_active' : ''}`}
+              onClick={onClose}
               to="/saved-movies"
               title="Сохранённые фильмы"
             >
@@ -48,7 +51,12 @@ export const Navigation: React.FC<Props> = ({ visible, onClose }) => {
             </NavLink>
           </li>
         </ul>
-        <NavLink to="/profile" className={` navigation__items navigation__items_auth ${isLanding ? 'navigation__item-link_landing' : ''}`} title="Аккаунт">
+        <NavLink
+          to="/profile"
+          onClick={onClose}
+          className={`navigation__items navigation__items_auth ${isLanding ? 'navigation__item-link_landing' : ''}`}
+          title="Аккаунт"
+        >
           Аккаунт
           <div className={`navigation__button ${isLanding ? 'navigation__button_landing' : ''}`}>
             <span className="navigation__button-icon">

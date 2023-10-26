@@ -2,7 +2,7 @@ import React, { FC, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import './Form.css';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { userData } from '../../../types/userTypes';
+import { userData } from '../../types/userTypes';
 import { PATTERN_USERNAME } from '../../utils/constants';
 
 interface Props {
@@ -37,7 +37,7 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
     <section className="form-container">
       <Link className="form-container__logo" to="/" title="На главную" />
       <h1 className="form-container__title">{isRegister ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit} noValidate>
         <div className="form__items">
           {isRegister
             && (
@@ -48,7 +48,7 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
                   type="text"
                   id="name"
                   name="name"
-                  placeholder="Виталий"
+                  placeholder="Имя"
                   onChange={handleChange}
                   value={values.name || ''}
                   pattern={PATTERN_USERNAME}
@@ -93,11 +93,9 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
           </button>
           <p className="form__submit-text">
             {isRegister ? 'Уже зарегистрированы?' : 'Еще не зарегистрированы?'}
-            <span>
-              {isRegister
-                ? <Link to="/signin" className="form__submit-span" title="Войти">Войти</Link>
-                : <Link to="/signup" className="form__submit-span" title="Регистрация">Регистрация</Link>}
-            </span>
+            {isRegister
+              ? <Link to="/signin" className="form__submit-span" title="Войти">Войти</Link>
+              : <Link to="/signup" className="form__submit-span" title="Регистрация">Регистрация</Link>}
           </p>
         </div>
       </form>

@@ -21,6 +21,11 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 280px;
+  max-height: 18px;
 }
 
 .element__time {
@@ -76,6 +81,11 @@
 .element__image {
   width: 364px;
   height: 203px;
+  object-fit: cover;
+}
+
+.element__link {
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {
@@ -83,11 +93,23 @@
     width: 339px;
     height: 190px;
   }
+
+  .element__title {
+    max-width: 250px;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  .element {
+    margin: 0 auto;
+  }
+
   .element__image {
     width: 300px;
     height: 168px;
+  }
+
+  .element__title {
+    max-width: 210px;
   }
 }

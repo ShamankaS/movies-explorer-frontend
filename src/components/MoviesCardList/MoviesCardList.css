@@ -15,16 +15,12 @@
 }
 
 .list__block {
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(364px, auto));
+  gap: 30px 24px;
+  justify-items: center;
   width: 100%;
-  column-gap: 24px;
-  row-gap: 30px;
-  list-style-type: none;
-  padding: 70px 0 30px;
-  max-width: 1280px;
+  padding: 70px 70px 30px;
 }
 
 .list__button {
@@ -41,6 +37,7 @@
   font-size: 12px;
   font-weight: 500;
   border: none;
+  margin: 50px auto 80px;
 }
 
 .list__button:hover {
@@ -55,14 +52,25 @@
   height: 140px;
 }
 
+.list__error {
+  color: #EE3465;
+  line-height: normal;
+  overflow: hidden;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 500;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 900px) {
   .list__container {
     margin: 0 30px;
   }
 
   .list__block {
-    column-gap: 30px;
-    row-gap: 36px;
+    grid-template-columns: repeat(auto-fill, minmax(339px, auto));
+    gap: 36px 30px;
   }
 
   .list__button {
@@ -77,6 +85,7 @@
 
   .list__block {
     padding: 40px 0 30px;
-    row-gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+    gap: 16px 10px;
   }
 }

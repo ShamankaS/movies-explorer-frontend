@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form } from '../components/Form/Form';
-import { userData } from '../../types/userTypes';
+import { userData } from '../types/userTypes';
 
 interface Props {
   onSubmit: (data: userData | Partial<userData>) => Promise<void>;
@@ -9,7 +9,7 @@ interface Props {
   errorMessage: string;
 }
 
-export const Register: React.FC<Props> = ({ onSubmit, isLoggedIn, errorMessage }) => {
+const Register: FC<Props> = ({ onSubmit, isLoggedIn, errorMessage }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,3 +24,5 @@ export const Register: React.FC<Props> = ({ onSubmit, isLoggedIn, errorMessage }
     </main>
   );
 };
+
+export default Register;

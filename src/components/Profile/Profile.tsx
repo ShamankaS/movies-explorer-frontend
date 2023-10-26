@@ -1,25 +1,26 @@
 import React, {
-  FC, FormEvent, useContext, useEffect, useState,
+  FC, FormEvent, useEffect, useState,
 } from 'react';
 import './Profile.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { userData } from '../../../types/userTypes';
+import { currentUserType, userData } from '../../types/userTypes';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { PATTERN_USERNAME } from '../../utils/constants';
 
 interface Props {
   onLogout: () => Promise<void>;
-  onSubmit: (data: Partial<userData>) => Promise<userData>;
+  onSubmit: (values: Partial<userData>) => Promise<userData>;
   errorMessage: string;
+  userData: currentUserType;
 }
 
-export const Profile: FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
+export const Profile: FC<Props> = ({
+  onLogout, onSubmit, errorMessage, userData,
+}) => {
   const [isChanged, setIsChanged] = useState<boolean>(false);
   const [isEditModeOn, setIsEditModeOn] = useState<boolean>(false);
-  const userData = useContext(CurrentUserContext);
 
   const {
-    values, handleChange, isValid, errors,
+    values, handleChange, isValid, errors, setValues,
   } = useFormValidation({
     name: userData?.name || '',
     email: userData?.email || '',
@@ -36,6 +37,13 @@ export const Profile: FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
       setIsChanged(false);
     });
   };
+
+  useEffect(() => {
+    setValues({
+      name: userData?.name || '',
+      email: userData?.email || '',
+    });
+  }, [userData]);
 
   const handleSwitchMode = () => {
     setIsEditModeOn(true);
@@ -70,7 +78,7 @@ export const Profile: FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
                   onChange={handleChange}
                   pattern={PATTERN_USERNAME}
                   disabled={!isEditModeOn}
-                  value={values.name || ''}
+                  value={values.name}
                   required
                 />
               </label>
@@ -86,7 +94,7 @@ export const Profile: FC<Props> = ({ onLogout, onSubmit, errorMessage }) => {
                   name="email"
                   onChange={handleChange}
                   disabled={!isEditModeOn}
-                  value={values.email || ''}
+                  value={values.email}
                   required
                 />
               </label>

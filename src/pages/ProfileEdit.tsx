@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Header } from '../components/Header/Header';
 import { Profile } from '../components/Profile/Profile';
-import { userData } from '../../types/userTypes';
+import { currentUserType, userData } from '../types/userTypes';
 
 interface Props {
   onSubmit: (values: Partial<userData>) => Promise<userData>;
   onLogout: () => Promise<void>;
   errorMessage: string;
+  userData: currentUserType;
 }
 
-export const ProfileEdit: React.FC<Props> = ({ onSubmit, onLogout, errorMessage }) => (
+const ProfileEdit: FC<Props> = ({
+  onSubmit, onLogout, errorMessage, userData,
+}) => (
   <>
     <Header />
     <main>
-      <Profile onLogout={onLogout} onSubmit={onSubmit} errorMessage={errorMessage} />
+      <Profile onLogout={onLogout} onSubmit={onSubmit} errorMessage={errorMessage} userData={userData} />
     </main>
   </>
 );
+
+export default ProfileEdit;

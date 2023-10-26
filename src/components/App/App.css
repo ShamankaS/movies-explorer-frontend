@@ -13,8 +13,16 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  max-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 *:focus {
   outline: 2px solid #FF6838;
+}
+
+main {
+  flex: 1;
 }
