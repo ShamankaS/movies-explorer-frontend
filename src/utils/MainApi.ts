@@ -2,8 +2,7 @@ import { makeRequest } from './makeRequst';
 import { userData } from '../types/userTypes';
 import { movieData } from '../types/moviesTypes';
 
-// const API_URL = 'api.shamanka.movies-exp.nomoredomainsicu.ru';
-const API_URL = 'http://localhost:3001';
+const API_URL = 'api.shamanka.movies-exp.nomoredomainsicu.ru';
 
 export function login(data: Partial<userData>) {
   return makeRequest(`${API_URL}/signin`, {
