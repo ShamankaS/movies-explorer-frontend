@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 import { durationConverter } from '../../utils/durationConverter';
@@ -20,7 +20,13 @@ export const MoviesCard: FC<Props> = ({
   name, duration, url, isFilmLiked, onLike, onDislike, filmId, item, trailerLink,
 }) => {
   const isSavedMovies = useLocation().pathname === '/saved-movies';
-  const [isLiked, setIsLiked] = useState(isFilmLiked || false);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (isFilmLiked) {
+      setIsLiked(isFilmLiked);
+    }
+  }, [isFilmLiked]);
 
   const handleDeleteMovie = async () => {
     if (onDislike && filmId) {
@@ -45,7 +51,7 @@ export const MoviesCard: FC<Props> = ({
           nameRU: item.nameRU,
           nameEN: item.nameEN,
         });
-      setIsLiked(!isLiked);
+      setIsLiked((state) => !state);
     }
   };
 
