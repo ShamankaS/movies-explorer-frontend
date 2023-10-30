@@ -14,6 +14,7 @@ import { currentUserType, userData } from '../../types/userTypes';
 import { movieData } from '../../types/moviesTypes';
 import { useGetStorageData } from '../../hooks/useGetStorageData';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { ERROR_TEXT } from '../../utils/constants';
 
 const LandingPage = React.lazy(() => import('../../pages/Landing'));
 const MoviesPage = React.lazy(() => import('../../pages/Movies'));
@@ -57,9 +58,9 @@ export default function App() {
       redirect('/movies');
     } catch (err: any) {
       if (err.statusCode === 400) {
-        setErrorMessage('Вы ввели неправильный логин или пароль');
+        setErrorMessage(ERROR_TEXT.login[400]);
       } else {
-        setErrorMessage('При авторизации произошла ошибка');
+        setErrorMessage(ERROR_TEXT.login.common);
       }
       console.warn(err);
       setStoredIsLoggedIn(false);
@@ -73,9 +74,9 @@ export default function App() {
       handleLogin({ email, password });
     } catch (err: any) {
       if (err.statusCode === 409) {
-        setErrorMessage('Пользователь с таким email уже существует');
+        setErrorMessage(ERROR_TEXT.registration[409]);
       } else {
-        setErrorMessage('При регистрации пользователя произошла ошибка');
+        setErrorMessage(ERROR_TEXT.registration.common);
       }
       console.warn(err);
       setStoredIsLoggedIn(false);
@@ -100,9 +101,9 @@ export default function App() {
       setCurrentUser(res);
     } catch (err: any) {
       if (err.statusCode === 409) {
-        setErrorMessage('Пользователь с таким email уже существует');
+        setErrorMessage(ERROR_TEXT.editProfile[409]);
       } else {
-        setErrorMessage('При обновлении профиля произошла ошибка');
+        setErrorMessage(ERROR_TEXT.editProfile.common);
       }
       console.warn(err);
       setErrorMessage(err.message);

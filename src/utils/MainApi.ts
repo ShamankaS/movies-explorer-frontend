@@ -1,8 +1,7 @@
 import { makeRequest } from './makeRequst';
 import { userData } from '../types/userTypes';
 import { movieData } from '../types/moviesTypes';
-
-const API_URL = 'https://api.shamanka.movies-exp.nomoredomainsicu.ru';
+import { API_URL } from './constants';
 
 export function login(data: Partial<userData>) {
   return makeRequest(`${API_URL}/signin`, {

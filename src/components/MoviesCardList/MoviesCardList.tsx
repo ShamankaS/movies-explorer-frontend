@@ -6,6 +6,7 @@ import './MoviesCardList.css';
 import { MoviesCard } from '../MoviesCard/MoviesCard';
 import { movieData, Movies } from '../../types/moviesTypes';
 import Preloader from '../Preloader/Preloader';
+import { CARDS_COUNT, SCREEN_WIDTH } from '../../utils/constants';
 
 interface Props {
   movies: Movies[];
@@ -23,9 +24,9 @@ export const MoviesCardList: FC<Props> = ({
   const [cardsCount, setCardsCount] = useState(0);
 
   const getCardsCount = (pageWidth: number) => {
-    if (pageWidth >= 1280) return 12;
-    if (pageWidth >= 768) return 8;
-    return 5;
+    if (pageWidth >= SCREEN_WIDTH.desktop) return CARDS_COUNT.init.desktop;
+    if (pageWidth >= SCREEN_WIDTH.tablet) return CARDS_COUNT.init.tablet;
+    return CARDS_COUNT.init.mobile;
   };
 
   const calculateCardsCount = () => {
@@ -35,9 +36,9 @@ export const MoviesCardList: FC<Props> = ({
 
   const calculateCardsToAdd = useCallback(() => {
     const pageWidth = document.documentElement.clientWidth;
-    if (pageWidth >= 1668) return 4;
-    if (pageWidth >= 1280) return 3;
-    return 2;
+    if (pageWidth >= SCREEN_WIDTH.custom) return CARDS_COUNT.toAdd.custom;
+    if (pageWidth >= SCREEN_WIDTH.desktop) return CARDS_COUNT.toAdd.desktop;
+    return CARDS_COUNT.toAdd.tablet;
   }, []);
 
   const delayCalculate = () => {

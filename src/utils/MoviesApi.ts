@@ -1,5 +1,6 @@
+import { API_BEATFILM_URL } from './constants';
 import { makeRequest } from './makeRequst';
 
 export function getMovies() {
-  return makeRequest('https://api.nomoreparties.co/beatfilm-movies');
+  return makeRequest(`${API_BEATFILM_URL}`);
 }

@@ -3,6 +3,7 @@ import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
 import { durationConverter } from '../../utils/durationConverter';
 import { movieData, Movies } from '../../types/moviesTypes';
+import { API_DOMAIN } from '../../utils/constants';
 
 interface Props {
   name: string;
@@ -44,9 +45,9 @@ export const MoviesCard: FC<Props> = ({
           duration: item.duration,
           year: item.year,
           description: item.description,
-          image: `https://api.nomoreparties.co${url}`,
+          image: `${API_DOMAIN + url}`,
           trailerLink: item.trailerLink,
-          thumbnail: `https://api.nomoreparties.co${item.image.formats.thumbnail.url}`,
+          thumbnail: `${API_DOMAIN + item.image.formats.thumbnail.url}`,
           movieId: item.id,
           nameRU: item.nameRU,
           nameEN: item.nameEN,
@@ -103,7 +104,7 @@ export const MoviesCard: FC<Props> = ({
           )}
       </div>
       <a className="element__link" href={trailerLink} target="_blank" rel="noreferrer" title="Ссылка на трейлер">
-        <img src={isSavedMovies ? url : `https://api.nomoreparties.co${url}`} alt="Обложка фильма" className="element__image" />
+        <img src={isSavedMovies ? url : `${API_DOMAIN + url}`} alt="Обложка фильма" className="element__image" />
       </a>
     </div>
   );
