@@ -24,6 +24,7 @@ export const Profile: FC<Props> = ({
   const [isEditModeOn, setIsEditModeOn] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   const {
     values, handleChange, isValid, errors, setValues,
@@ -34,14 +35,16 @@ export const Profile: FC<Props> = ({
 
   const hasNoError = (errorMessage.length === 0);
 
-  const enableButton = hasNoError && isEditModeOn && isValid && JSON.stringify({
+  const enableButton = isFormValid && hasNoError && isEditModeOn && JSON.stringify({
     name: currentUser?.name,
     email: currentUser?.email,
   }) !== JSON.stringify(values);
 
   const handleSubmit = (evt: FormEvent, values: Partial<userData>) => {
     evt.preventDefault();
-    onSubmit(values);
+    onSubmit(values).then(() => {
+      setIsFormValid(false);
+    });
   };
 
   const handleSwitchMode = () => {
@@ -61,6 +64,7 @@ export const Profile: FC<Props> = ({
   }, [error]);
 
   useEffect(() => {
+    setIsFormValid(isValid);
     onErrorChange('');
   }, [values]);
 
