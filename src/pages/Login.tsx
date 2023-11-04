@@ -6,10 +6,10 @@ import { userData } from '../types/userTypes';
 interface Props {
   onSubmit: (data: Partial<userData>) => Promise<void>;
   isLoggedIn: boolean;
-  errorMessage: string;
+  error: string;
 }
 
-const Login: FC<Props> = ({ onSubmit, isLoggedIn, errorMessage }) => {
+const Login: FC<Props> = ({ onSubmit, isLoggedIn, error }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Login: FC<Props> = ({ onSubmit, isLoggedIn, errorMessage }) => {
 
   return (
     <main>
-      <Form isRegister={false} onSubmit={onSubmit} errorMessage={errorMessage} />
+      <Form isRegister={false} onSubmit={onSubmit} error={error} />
     </main>
   );
 };

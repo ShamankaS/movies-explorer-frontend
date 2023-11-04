@@ -1,17 +1,19 @@
-import React, { FC, FormEvent } from 'react';
+import React, {
+  FC, FormEvent, useEffect, useState,
+} from 'react';
 import { Link } from 'react-router-dom';
 import './Form.css';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { userData } from '../../types/userTypes';
-import { PATTERN_USERNAME } from '../../utils/constants';
+import { PATTERN_USERNAME, PATTERN_EMAIL } from '../../utils/constants';
 
 interface Props {
   isRegister: boolean;
   onSubmit: (data: userData | Partial<userData>) => Promise<void>;
-  errorMessage: string;
+  error: string;
 }
 
-export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
+export const Form: FC<Props> = ({ isRegister, onSubmit, error }) => {
   const {
     values, errors, handleChange, isValid, isValidInputs,
   } = useFormValidation({
@@ -19,6 +21,9 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
     email: '',
     password: '',
   });
+
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
@@ -30,8 +35,19 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
       email: values.email,
       password: values.password,
     };
-    onSubmit(userData);
+    onSubmit(userData).then(() => {
+      setIsFormValid(false);
+    });
   };
+
+  useEffect(() => {
+    setIsFormValid(isValid);
+    setErrorMessage('');
+  }, [values]);
+
+  useEffect(() => {
+    setErrorMessage(error);
+  }, [error]);
 
   return (
     <section className="form-container">
@@ -67,6 +83,8 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
               placeholder="pochta@yandex.ru"
               onChange={handleChange}
               value={values.email || ''}
+              pattern={PATTERN_EMAIL}
+              autoComplete="on"
               required
             />
             <span className="form__input-error">{errors.email}</span>
@@ -88,7 +106,7 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, errorMessage }) => {
         </div>
         <div className="form__submit-button-container">
           <span className="form__submit-error">{errorMessage}</span>
-          <button className="form__submit-button" type="submit" disabled={!isValid}>
+          <button className="form__submit-button" type="submit" disabled={!isFormValid}>
             {isRegister ? 'Зарегистрироваться' : 'Войти'}
           </button>
           <p className="form__submit-text">

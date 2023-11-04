@@ -42,5 +42,6 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/require-default-props': 'off',
     'no-underscore-dangle': 'off',
+    'no-useless-escape': 'off',
   },
 };
