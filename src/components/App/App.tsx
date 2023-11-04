@@ -27,7 +27,8 @@ export default function App() {
   const [storedIsLoggedIn, setStoredIsLoggedIn] = useGetStorageData('isLoggedIn', false);
   const [myMovies, setMyMovies] = useState<movieData[]>([]);
   const [currentUser, setCurrentUser] = useState<currentUserType | null>(null);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const fetchMovies = async () => {
@@ -52,8 +53,8 @@ export default function App() {
 
   const handleLogin = async (data: Partial<userData>) => {
     try {
-      const res = await login(data);
-      checkToken();
+      await login(data);
+      setStoredIsLoggedIn(true);
       fetchMovies();
       redirect('/movies');
     } catch (err: any) {
@@ -69,7 +70,7 @@ export default function App() {
 
   const handleRegister = async (data: userData | Partial<userData>) => {
     try {
-      const { name, email, password } = data;
+      const { email, password } = data;
       await register(data as userData);
       handleLogin({ email, password });
     } catch (err: any) {
@@ -99,7 +100,9 @@ export default function App() {
     try {
       const res = await updateUser(values);
       setCurrentUser(res);
+      setIsSuccess(true);
     } catch (err: any) {
+      setIsSuccess(false);
       if (err.statusCode === 409) {
         setErrorMessage(ERROR_TEXT.editProfile[409]);
       } else {
@@ -175,8 +178,10 @@ export default function App() {
                   isLoggedIn={storedIsLoggedIn}
                   onLogout={handleLogout}
                   onSubmit={handleProfileEdit}
-                  errorMessage={errorMessage}
-                  userData={currentUser}
+                  error={errorMessage}
+                  onErrorChange={setErrorMessage}
+                  success={isSuccess}
+                  onSetSuccess={setIsSuccess}
                 />
               </Suspense>
             )}
@@ -201,7 +206,8 @@ export default function App() {
                 <LoginPage
                   onSubmit={handleLogin}
                   isLoggedIn={storedIsLoggedIn}
-                  errorMessage={errorMessage}
+                  error={errorMessage}
+                  onErrorChange={setErrorMessage}
                 />
               </Suspense>
             )}
@@ -213,7 +219,8 @@ export default function App() {
                 <RegisterPage
                   onSubmit={handleRegister}
                   isLoggedIn={storedIsLoggedIn}
-                  errorMessage={errorMessage}
+                  error={errorMessage}
+                  onErrorChange={setErrorMessage}
                 />
               </Suspense>
             )}

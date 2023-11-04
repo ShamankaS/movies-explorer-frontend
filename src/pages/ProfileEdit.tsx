@@ -1,22 +1,24 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Header } from '../components/Header/Header';
 import { Profile } from '../components/Profile/Profile';
-import { currentUserType, userData } from '../types/userTypes';
+import { userData } from '../types/userTypes';
 
 interface Props {
   onSubmit: (values: Partial<userData>) => Promise<userData>;
   onLogout: () => Promise<void>;
-  errorMessage: string;
-  userData: currentUserType;
+  error: string;
+  success: boolean;
+  onErrorChange: Dispatch<SetStateAction<string>>;
+  onSetSuccess: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProfileEdit: FC<Props> = ({
-  onSubmit, onLogout, errorMessage, userData,
+  onSubmit, onLogout, error, success, onErrorChange, onSetSuccess,
 }) => (
   <>
     <Header />
     <main>
-      <Profile onLogout={onLogout} onSubmit={onSubmit} errorMessage={errorMessage} userData={userData} />
+      <Profile onLogout={onLogout} onSubmit={onSubmit} error={error} success={success} onErrorChange={onErrorChange} onSetSuccess={onSetSuccess} />
     </main>
   </>
 );

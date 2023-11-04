@@ -1,5 +1,5 @@
 import React, {
-  FC, FormEvent, useEffect, useState,
+  Dispatch, FC, FormEvent, SetStateAction, useEffect, useState,
 } from 'react';
 import { Link } from 'react-router-dom';
 import './Form.css';
@@ -11,9 +11,12 @@ interface Props {
   isRegister: boolean;
   onSubmit: (data: userData | Partial<userData>) => Promise<void>;
   error: string;
+  onErrorChange: Dispatch<SetStateAction<string>>;
 }
 
-export const Form: FC<Props> = ({ isRegister, onSubmit, error }) => {
+export const Form: FC<Props> = ({
+  isRegister, onSubmit, error, onErrorChange,
+}) => {
   const {
     values, errors, handleChange, isValid, isValidInputs,
   } = useFormValidation({
@@ -42,7 +45,7 @@ export const Form: FC<Props> = ({ isRegister, onSubmit, error }) => {
 
   useEffect(() => {
     setIsFormValid(isValid);
-    setErrorMessage('');
+    onErrorChange('');
   }, [values]);
 
   useEffect(() => {

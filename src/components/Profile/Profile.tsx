@@ -1,65 +1,82 @@
 import React, {
-  FC, FormEvent, useEffect, useState,
+  Dispatch,
+  FC, FormEvent, SetStateAction, useContext, useEffect, useState,
 } from 'react';
 import './Profile.css';
-import { currentUserType, userData } from '../../types/userTypes';
+import { userData } from '../../types/userTypes';
 import { useFormValidation } from '../../hooks/useFormValidation';
-import { PATTERN_USERNAME } from '../../utils/constants';
+import { PATTERN_EMAIL, PATTERN_USERNAME, SUCCESS_TEXT } from '../../utils/constants';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 interface Props {
   onLogout: () => Promise<void>;
   onSubmit: (values: Partial<userData>) => Promise<userData>;
-  errorMessage: string;
-  userData: currentUserType;
+  error: string;
+  success: boolean;
+  onErrorChange: Dispatch<SetStateAction<string>>;
+  onSetSuccess: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Profile: FC<Props> = ({
-  onLogout, onSubmit, errorMessage, userData,
+  onLogout, onSubmit, error, success, onErrorChange, onSetSuccess,
 }) => {
-  const [isChanged, setIsChanged] = useState<boolean>(false);
+  const currentUser = useContext(CurrentUserContext);
   const [isEditModeOn, setIsEditModeOn] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   const {
     values, handleChange, isValid, errors, setValues,
   } = useFormValidation({
-    name: userData?.name || '',
-    email: userData?.email || '',
+    name: currentUser?.name || '',
+    email: currentUser?.email || '',
   });
 
-  const enableButton = isChanged && isValid && JSON.stringify({
-    name: userData?.name,
-    email: userData?.email,
+  const hasNoError = (errorMessage.length === 0);
+
+  const enableButton = hasNoError && isEditModeOn && isValid && JSON.stringify({
+    name: currentUser?.name,
+    email: currentUser?.email,
   }) !== JSON.stringify(values);
 
   const handleSubmit = (evt: FormEvent, values: Partial<userData>) => {
     evt.preventDefault();
-    onSubmit(values).then(() => {
-      setIsChanged(false);
-    });
+    onSubmit(values);
+  };
+
+  const handleSwitchMode = () => {
+    setIsEditModeOn(true);
+    onSetSuccess(false);
   };
 
   useEffect(() => {
     setValues({
-      name: userData?.name || '',
-      email: userData?.email || '',
+      name: currentUser?.name || '',
+      email: currentUser?.email || '',
     });
-  }, [userData]);
-
-  const handleSwitchMode = () => {
-    setIsEditModeOn(true);
-    setIsChanged(true);
-  };
+  }, [currentUser]);
 
   useEffect(() => {
-    setIsChanged(true);
-  }, [values.email]);
+    setErrorMessage(error);
+  }, [error]);
+
+  useEffect(() => {
+    onErrorChange('');
+  }, [values]);
+
+  useEffect(() => {
+    setIsSuccess(success);
+    if (success) {
+      setIsEditModeOn(false);
+    }
+  }, [success]);
 
   return (
     <section className="profile">
       <div className="profile__content">
         <h1 className="profile__title">
           Привет,&nbsp;
-          {userData?.name}
+          {currentUser?.name}
           &#33;
         </h1>
         <form
@@ -88,12 +105,13 @@ export const Profile: FC<Props> = ({
               <label className="edit-form__label">
                 E-mail
                 <input
-                  className="edit-form__input"
+                  className={`edit-form__input ${hasNoError ? '' : 'edit-form__input_incorrect'}`}
                   id="profile-email"
                   type="email"
                   name="email"
                   onChange={handleChange}
                   disabled={!isEditModeOn}
+                  pattern={PATTERN_EMAIL}
                   value={values.email}
                   required
                 />
@@ -101,6 +119,7 @@ export const Profile: FC<Props> = ({
               <span className="edit-form__error">{errors.email}</span>
             </div>
           </div>
+          {isSuccess && <span className="edit-form__success-message">{SUCCESS_TEXT.editProfile}</span>}
           <div className="edit-form__submit-container">
             {isEditModeOn
               ? (
