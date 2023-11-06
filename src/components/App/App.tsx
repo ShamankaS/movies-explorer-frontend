@@ -133,6 +133,7 @@ export default function App() {
 
   useEffect(() => {
     setErrorMessage('');
+    setIsSuccess(false);
   }, [navigate]);
 
   useEffect(() => {
