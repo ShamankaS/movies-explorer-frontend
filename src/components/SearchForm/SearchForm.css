@@ -60,7 +60,7 @@
   opacity: 0.8;
 }
 
-.search__button:active {
+.search__button:enabled:active {
   transform: scale(0.9);
 }
 
@@ -118,6 +118,17 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.29;
+}
+
+.search__input-error {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  width: 100%;
+  padding: 3px 0 0 0;
+  text-align: center;
 }
 
 @media screen and (max-width: 900px) {

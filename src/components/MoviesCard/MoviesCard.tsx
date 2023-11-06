@@ -1,21 +1,75 @@
-import React from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
-import exampleImg from '../../images/example-img.jpg';
+import { durationConverter } from '../../utils/durationConverter';
+import { movieData, Movies } from '../../types/moviesTypes';
+import { API_DOMAIN } from '../../utils/constants';
 
-export const MoviesCard = () => {
+interface Props {
+  name: string;
+  duration: number;
+  url: string;
+  isFilmLiked?: boolean;
+  onLike?: (movieData: movieData) => Promise<string>;
+  onDislike?: (id: string) => Promise<string>;
+  filmId?: string | undefined;
+  item?: Movies;
+  trailerLink: string;
+}
+
+export const MoviesCard: FC<Props> = ({
+  name, duration, url, isFilmLiked, onLike, onDislike, filmId, item, trailerLink,
+}) => {
   const isSavedMovies = useLocation().pathname === '/saved-movies';
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (isFilmLiked) {
+      setIsLiked(isFilmLiked);
+    }
+  }, [isFilmLiked]);
+
+  const handleDeleteMovie = async () => {
+    if (onDislike && filmId) {
+      await onDislike(filmId);
+    }
+  };
+
+  const handleLikeClick = async () => {
+    if (onLike && onDislike && item) {
+      const res = isLiked
+        ? await onDislike(filmId as string)
+        : await onLike({
+          country: item.country,
+          director: item.director,
+          duration: item.duration,
+          year: item.year,
+          description: item.description,
+          image: `${API_DOMAIN + url}`,
+          trailerLink: item.trailerLink,
+          thumbnail: `${API_DOMAIN + item.image.formats.thumbnail.url}`,
+          movieId: item.id,
+          nameRU: item.nameRU,
+          nameEN: item.nameEN,
+        });
+      setIsLiked((state) => !state);
+    }
+  };
 
   return (
     <div className="element">
       <div className="element__wrapper">
         <div className="element__block">
-          <p className="element__title">33 слова о дизайне</p>
-          <p className="element__time">1ч 47м</p>
+          <p className="element__title">{name}</p>
+          <p className="element__time">{durationConverter(duration)}</p>
         </div>
-        <button className="element__button" type="button">
-          {isSavedMovies
-            ? (
+        {isSavedMovies
+          ? (
+            <button
+              className="element__button"
+              type="button"
+              onClick={handleDeleteMovie}
+            >
               <span className="element__delete-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
                   <path
@@ -28,8 +82,14 @@ export const MoviesCard = () => {
                   />
                 </svg>
               </span>
-            )
-            : (
+            </button>
+          )
+          : (
+            <button
+              className={`element__button ${isLiked ? 'element__button_active' : ''}`}
+              type="button"
+              onClick={handleLikeClick}
+            >
               <span className="element__button-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 10 14" fill="none">
                   <path
@@ -40,10 +100,12 @@ export const MoviesCard = () => {
                   />
                 </svg>
               </span>
-            )}
-        </button>
+            </button>
+          )}
       </div>
-      <img src={exampleImg} alt="Обложка фильма" className="element__image" />
+      <a className="element__link" href={trailerLink} target="_blank" rel="noreferrer" title="Ссылка на трейлер">
+        <img src={isSavedMovies ? url : `${API_DOMAIN + url}`} alt="Обложка фильма" className="element__image" />
+      </a>
     </div>
   );
 };
